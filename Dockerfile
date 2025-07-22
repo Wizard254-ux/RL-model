@@ -14,4 +14,4 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir --default-timeout=100 --retries=10 -r requirements.txt
 
 # Run your training script
-CMD ["python", "ppo_agent.py"]
+CMD ["python","serve_model.py"]
