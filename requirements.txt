@@ -2,3 +2,4 @@ stable-baselines3[extra]
 gym
 matplotlib
 torch
+flask
