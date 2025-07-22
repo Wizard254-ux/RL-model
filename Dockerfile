@@ -11,7 +11,7 @@ COPY . /app
 RUN pip install --upgrade pip
 
 # Install dependencies
-RUN TMPDIR=/var/tmp pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --default-timeout=100 --retries=10 -r requirements.txt
 
 # Run your training script
 CMD ["python", "ppo_agent.py"]
