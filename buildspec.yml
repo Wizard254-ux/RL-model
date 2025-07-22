@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging into Amazon ECR...
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 888121514872.dkr.ecr.eu-north-1.amazonaws.com
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t rl-model .
+      - docker tag rl-model:latest 888121514872.dkr.ecr.eu-north-1.amazonaws.com/rl-model:latest
+  post_build:
+    commands:
+      - echo Pushing image to Amazon ECR...
+      - docker push 888121514872.dkr.ecr.eu-north-1.amazonaws.com/rl-model:latest
+
+artifacts:
+  files:
+    - '**/*'
